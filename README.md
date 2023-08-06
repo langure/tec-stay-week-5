@@ -40,3 +40,49 @@ After successful training, if we present a new image to the network, it can pred
 
 [Book: introduction to neural networks](https://ds.amu.edu.et/xmlui/bitstream/handle/123456789/4338/an-introduction-to-neural-networks.9781857286731.36028.pdf?sequence=1&isAllowed=y)
 
+# Code Example 1
+
+In this example, we are going to build a simple neural network to solve the XOR problem. The XOR problem is a classic binary classification problem, where the output is 0 if both input bits are the same, and 1 if they are different.
+
+Toy Data Generation:
+We start by generating toy data for the XOR problem. The data consists of four input samples, each with two features (input bits), and their corresponding target labels (0 or 1). This data will be used to train and test the neural network.
+
+Neural Network Architecture:
+The neural network architecture is defined using the PyTorch library. We create a custom class called XORNeuralNetwork that inherits from nn.Module. This class represents our neural network model. The network has an input layer with two neurons, a hidden layer with two neurons, and an output layer with one neuron.
+
+Forward Pass:
+The forward pass is defined within the XORNeuralNetwork class. During the forward pass, the input data flows through the network to compute the predictions. We apply the sigmoid activation function at each layer to introduce non-linearity in the model.
+
+Loss Function and Optimizer:
+We use Mean Squared Error (MSE) as the loss function to measure the difference between the predicted outputs and the true labels. Stochastic Gradient Descent (SGD) is chosen as the optimizer to update the network's parameters based on the computed gradients during backpropagation.
+
+Training Loop:
+We run a loop for a specified number of epochs (iterations) to train the neural network. In each epoch, we perform a forward pass to get the predictions, calculate the loss, perform backpropagation to compute gradients, and update the weights and biases using the optimizer.
+
+Testing the Trained Model:
+After training, we use the trained neural network to make predictions on the test data (which is the same as the training data in this example). We use the torch.no_grad() context to disable gradient computation during testing, as we don't need to update the parameters.
+
+Results:
+The network learns to approximate the XOR function after training. The predictions for the test data will be close to the true target labels (0 or 1).
+
+# Code example 2
+
+In this example, we are going to build and train a deep CNN to classify images of clothing items from the Fashion-MNIST dataset. The Fashion-MNIST dataset is a collection of grayscale images, each representing a different clothing category, such as shirts, trousers, dresses, etc.
+
+Data Preprocessing:
+We start by loading and preprocessing the Fashion-MNIST dataset using the torchvision library. We transform the images into PyTorch tensors and normalize the pixel values to have a mean of 0.5 and standard deviation of 0.5.
+
+Define the CNN Architecture:
+The CNN architecture is designed to handle the complexity of image classification tasks. We create a custom CNN class that inherits from nn.Module. The CNN has two convolutional layers (conv1 and conv2) with ReLU activation functions, followed by max-pooling layers to downsample the feature maps. There are also two fully connected layers (fc1 and fc2) to make the final classifications.
+
+Forward Pass:
+The forward method in the CNN class defines how the input data flows through the CNN. The input images are passed through the convolutional and pooling layers, and then flattened to be fed into the fully connected layers. The ReLU activation function introduces non-linearity to the model.
+
+Loss Function and Optimizer:
+We use the CrossEntropyLoss as the loss function to measure the difference between the predicted class probabilities and the true labels. The Adam optimizer is chosen for its adaptive learning rate and momentum.
+
+Training Loop:
+We run a loop for a specified number of epochs to train the CNN. In each epoch, we process batches of images from the training set. The model makes predictions, computes the loss, performs backpropagation to calculate gradients, and updates the weights and biases using the optimizer. The running loss is printed to monitor the training progress.
+
+Testing the Trained Model:
+After training, we evaluate the CNN's performance on the test set. We calculate the accuracy of the model in classifying clothing items. Accuracy is the percentage of correctly classified images among all test images.
